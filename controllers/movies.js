@@ -69,10 +69,10 @@ module.exports.deleteMovie = (req, res, next) => {
       if (!movie) {
         throw new NotFoundError(MOVIE_NOT_FOUND);
       }
-      if (movie.owner.toString() !== req.user._id) {
+      if (movie.owner.toString() !== req.user._id.toString()) {
         throw new ForbiddenError(DELETE_MOVIE_ERROR);
       }
-      return Movie.findByIdAndRemove(movieId);
+      return Movie.remove(movie);
     })
     .then(() => res.status(200).send({ message: SUCCESS }))
     .catch((err) => {
