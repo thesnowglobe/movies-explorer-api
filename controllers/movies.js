@@ -72,7 +72,7 @@ module.exports.deleteMovie = (req, res, next) => {
       if (movie.owner.toString() !== req.user._id) {
         throw new ForbiddenError(DELETE_MOVIE_ERROR);
       }
-      return Movie.findByIdAndRemove(movieId);
+      return Movie.remove(movie);
     })
     .then(() => res.status(200).send({ message: SUCCESS }))
     .catch((err) => {
