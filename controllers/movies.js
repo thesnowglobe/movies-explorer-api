@@ -15,7 +15,7 @@ const {
 module.exports.getMovies = (req, res, next) => {
   const owner = req.user._id;
 
-  Movie.find({ owner })
+  Movie.find({}, null, {limit: 100})
     .then((movies) => res.send(movies))
     .catch(next);
 };
