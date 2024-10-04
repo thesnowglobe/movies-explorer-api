@@ -11,6 +11,7 @@ const rateLimiter = require('./utils/rateLimiter');
 const { PORT, MONGO } = require('./utils/envConfig');
 
 const app = express();
+app.options('*', cors());
 app.use(cors());
 app.use(express.json());
 app.use(helmet());
